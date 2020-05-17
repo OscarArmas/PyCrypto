@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>GoShareClient</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
+        <a class="navbar-brand" href="#">PyCrypto<small><i>Desktop</i></small></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+          </ul>
+            <button type="button" class="btn btn-danger">Contactos</button>
+      </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <br><br>
+      <!-- Cifrar-->
+      <h1> Cifrar y descifrar</h1>
+      <ul class="nav nav-tabs" id="cifrar" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="cifrarmensaje-tab" data-toggle="tab" href="#cifrarmensaje" role="tab" aria-controls="home" aria-selected="true">Cifrar texto</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="cifrararchivo-tab" data-toggle="tab" href="#cifrararchivo" role="tab" aria-controls="profile" aria-selected="false">Cifrar archivo</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="descifrarmensaje-tab" data-toggle="tab" href="#descifrarmensaje" role="tab" aria-controls="home" aria-selected="true">Descifrar texto</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="descifrararchivo-tab" data-toggle="tab" href="#descifrararchivo" role="tab" aria-controls="profile" aria-selected="false">Descifrar archivo</a>
+  </li>
+</ul>
+<div class="tab-content" id="cifrarContent">
+  <div class="tab-pane fade show active" id="cifrarmensaje" role="tabpanel" aria-labelledby="cifrarmensaje-tab"><br>
+    <form id="cifrarTexto">
+       <label for="cifrarTexto">Texto que quieres cifrar</label>
+      <textarea class="form-control" id="textoCifrar" rows="5"></textarea><br>
+      <button type="submit" class="btn btn-success" >Cifrar y firmar</button>
+    </form>
+    <hr>
+    <label for="resultadoCifrar">Resultado</label>
+   <textarea class="form-control" id="resultadoCifrar" rows="10" disabled="true"></textarea><br>
+  </div>
+  <div class="tab-pane fade" id="cifrararchivo" role="tabpanel" aria-labelledby="cifrararchivo-tab"><br>
+    <form>
+      <div class="form-group">
+        <label for="archivoCifrar">Archivo a cifrar</label>
+        <input type="file" class="form-control-file" id="archivoCifrar">
+      </div>
+    </form>
+  </div>
+  <div class="tab-pane fade" id="descifrarmensaje" role="tabpanel" aria-labelledby="descifrarmensaje-tab">
+    <br>
+      <form>
+         <label for="descifrarTexto">Texto que quieres descifrar</label>
+        <textarea class="form-control" id="descifrarTexto" rows="5"></textarea><br>
+        <button type="button" class="btn btn-success" >Descifrar y verificar</button>
+      </form>
+      <hr>
+      <label for="resultadoDescifrar">Resultado</label>
+     <textarea class="form-control" id="resultadoDescifrar" rows="10" disabled="true"></textarea><br>
+  </div>
+  <div class="tab-pane fade" id="descifrararchivo" role="tabpanel" aria-labelledby="descifrararchivo-tab"><br>
+    <form>
+    <div class="form-group">
+      <label for="descifrarArchivo">Archivo a descifrar</label>
+      <input type="file" class="form-control-file" id="descifrarArchivo">
+    </div>
+  </form></div>
+</div>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">PyCrypto 2020</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="./eel.js"></script>
+<script src="js/main.js"></script>
+
+<script>
+    $( document ).ready(function() {
+      $("#cifrarTexto").submit(function(e){
+        e.preventDefault();
+        texto = $("#textoCifrar").val();
+        if(texto == ""){
+          alert("Mensaje vacio!")
+        }else{
+          eel.cifrar(texto,"1234")
+        }
+      });
+    });
+</script>
+<script>
+function ActualizarCifrarTexto(resultado) {
+  $("#resultadoCifrar").val(resultado);
+}
+eel.expose(ActualizarCifrarTexto);               // Expose this function to Python
+</script>
+  </body>
+</html>
