@@ -18,15 +18,11 @@ def main():
 def cifrarRSA(mensaje,key):
     print("Hola")
     mensaje = mensaje.encode()
-    #if not (destinatario in contactos):
-    #    resultado = "Destinatario no encontrado :("
-    #else:
     public = rsa.importKey(key)
-    #private = keys[1]
+
     cifrado = b64encode(rsa.encrypt(mensaje, public)).decode()
     print(cifrado)
-    #firma = b64encode(rsa.sign(mensaje, private, "SHA-512")).decode()
-    #resultado = "--- INICIO MENSAJE CIFRADO ---\n%s\n%s\n--- FIN MENSAJE CIFRADO ---"%(cifrado,firma)
+
     resultado = cifrado
     eel.ActualizarCifrarTextoRSA(resultado)
     return
@@ -83,38 +79,8 @@ def nuevoContacto(nombre,RSAKey,AESKey):
 
 @eel.expose
 def descifrarRSA(mensajeCifrado):
-    '''regex = r"--- INICIO MENSAJE CIFRADO ---(.+)--- FIN MENSAJE CIFRADO ---"
-    data = re.findall(regex,mensaje.replace("\n","\\n"),re.MULTILINE)
-    try:
-        data = data[0]
-    except:
-        print("No se encontro el mensaje")
-        return
-    data = data.replace("--- INICIO MENSAJE CIFRADO ---\\n","")
-    data = data.replace("\\n--- FIN MENSAJE CIFRADO ---","")
-    print(data)'''
     private = keys[1]
     mensaje = rsa.decrypt(b64decode(mensajeCifrado),private).decode()
     eel.ActualizarDescifrarTextoRSA(mensaje)
 if __name__ == '__main__':
     main()
-
-'''
-msg1 = b"Hola mundo, usuario a"
-msg2 = b"Hola mundo, usuario b"
-keysize = 2048
-(public, private) = rsa.newkeys(keysize)
-encrypted = b64encode(rsa.encrypt(msg1, public))
-decrypted = rsa.decrypt(b64decode(encrypted), private)
-signature = b64encode(rsa.sign(msg1, private, "SHA-512"))
-verify = rsa.verify(msg1, b64decode(signature), public)
-
-print(private.exportKey('PEM'))
-print(public.exportKey('PEM'))
-print("Encrypted: " ,encrypted)
-print("Decrypted: '%s'" % decrypted)
-print("Signature: ",signature)
-print("Verify: %s" % verify)
-data = rsa.verify(msg2, b64decode(signature), public)
-print(data)
-'''
