@@ -9,9 +9,6 @@ def removeKeys():
     # Borramos llaves previas
     if path.exists("data/public.pem"): os.remove("data/public.pem")
     if path.exists("data/private.pem"): os.remove("data/private.pem")
-def removeContacts():
-     if path.exists("data/contactos"): os.remove("data/contactos")
-     os.mkdir("data/contactos")
 def createKeys():
     print("Generando llaves...")
     (public,private) = RSA.newkeys(__KEY_SIZE__)
@@ -33,7 +30,6 @@ def loadData():
             private = RSA.importKey(f.read())
         keys = public,private
     if not path.exists("data/contactos.data"):
-        removeContacts()
         print("Creando contactos")
         contactos = {}
         pickle.dump( contactos, open( "data/contactos.data", "wb"))
@@ -41,5 +37,4 @@ def loadData():
         contactos = pickle.load(open( "data/contactos.data", "rb"))
     if not path.exists("archivos"):
         os.mkdir("archivos")
-
     return keys,contactos
