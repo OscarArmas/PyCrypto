@@ -19,6 +19,8 @@ def createKeys():
         return public,private
 
 def loadData():
+    if not path.exists("data"):
+        os.mkdir("data")
     if not path.exists("data/public.pem") or not  path.exists("data/private.pem") :
         print("Una de las llaves no fué encontrada, borrando....")
         removeKeys()
@@ -35,6 +37,4 @@ def loadData():
         pickle.dump( contactos, open( "data/contactos.data", "wb"))
     else:
         contactos = pickle.load(open( "data/contactos.data", "rb"))
-    if not path.exists("archivos"):
-        os.mkdir("archivos")
     return keys,contactos
