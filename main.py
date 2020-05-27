@@ -12,7 +12,7 @@ keys,contactos = loadData()
 def main():
     print("Datos cargados")
     eel.init('gui')
-    eel.start('index.html', port=8080)    # Start
+    eel.start('index.html',host="0.0.0.0",port=8080,mode=None)    # Start
 
 @eel.expose
 def cifrarRSA(mensaje,key):
