@@ -27,7 +27,7 @@ Es así cómo pueden usarse ambos algoritmos para poder brindar privacidad (AES)
 2. Instala las bibliotecas necesarias.
 eel (para la interfaz):
 ```
-pip install eel
+pip install Eel==0.10.4
 ```
 pycryptodome (biblioteca criptográfica):
 ```
